@@ -121,7 +121,7 @@ async def check_sms_filters(sender: str, content: str) -> bool:
 async def send_email_smtp(config: EmailConfig, sms: SMSMessage) -> Dict[str, Any]:
     """Send email using SMTP configuration"""
     try:
-        msg = MimeMultipart()
+        msg = email.mime.multipart.MIMEMultipart()
         msg['From'] = f"{config.sender_name} <{config.smtp_username}>"
         msg['To'] = config.recipient_email
         msg['Subject'] = f"SMS from {sms.sender}"
@@ -139,7 +139,7 @@ Message:
 This message was automatically forwarded by SMS Mail Forwarder
         """
         
-        msg.attach(MimeText(body, 'plain'))
+        msg.attach(email.mime.text.MIMEText(body, 'plain'))
         
         # Create SMTP session
         if config.use_tls:
