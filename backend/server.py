@@ -10,8 +10,8 @@ import os
 import logging
 import smtplib
 import ssl
-import email.mime.text
-import email.mime.multipart
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from pathlib import Path
 import json
 import uuid
